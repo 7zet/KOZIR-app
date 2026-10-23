@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SubscriptionRouteImport } from './routes/subscription'
+import { Route as RoomCodeRouteImport } from './routes/room.$code'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopRoute = ShopRouteImport.update({
+  id: '/shop',
+  path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubscriptionRoute = SubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoomCodeRoute = RoomCodeRouteImport.update({
+  id: '/room/$code',
+  path: '/room/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/profile': typeof ProfileRoute
+  '/shop': typeof ShopRoute
+  '/subscription': typeof SubscriptionRoute
+  '/room/$code': typeof RoomCodeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/profile': typeof ProfileRoute
+  '/shop': typeof ShopRoute
+  '/subscription': typeof SubscriptionRoute
+  '/room/$code': typeof RoomCodeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/profile': typeof ProfileRoute
+  '/shop': typeof ShopRoute
+  '/subscription': typeof SubscriptionRoute
+  '/room/$code': typeof RoomCodeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/profile' | '/shop' | '/subscription' | '/room/$code'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/profile' | '/shop' | '/subscription' | '/room/$code'
+  id: '__root__' | '/' | '/profile' | '/shop' | '/subscription' | '/room/$code'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProfileRoute: typeof ProfileRoute
+  ShopRoute: typeof ShopRoute
+  SubscriptionRoute: typeof SubscriptionRoute
+  RoomCodeRoute: typeof RoomCodeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shop': {
+      id: '/shop'
+      path: '/shop'
+      fullPath: '/shop'
+      preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/subscription': {
+      id: '/subscription'
+      path: '/subscription'
+      fullPath: '/subscription'
+      preLoaderRoute: typeof SubscriptionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/room/$code': {
+      id: '/room/$code'
+      path: '/room/$code'
+      fullPath: '/room/$code'
+      preLoaderRoute: typeof RoomCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProfileRoute: ProfileRoute,
+  ShopRoute: ShopRoute,
+  SubscriptionRoute: SubscriptionRoute,
+  RoomCodeRoute: RoomCodeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
