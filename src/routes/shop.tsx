@@ -67,7 +67,7 @@ function Shop() {
   const act = (s: Skin) => {
     if (s.state === "buy") {
       const next = tryPurchase(coins, s.price);
-      if (next === null) return toast.error(t("notEnough"));
+      if (next === null) { toast.error(t("notEnough")); return; }
       setCoins(() => next);
       setList((l) => l.map((x) => (x.id === s.id ? { ...x, state: "owned" } : x)));
       setPreview({ ...s, state: "owned" });

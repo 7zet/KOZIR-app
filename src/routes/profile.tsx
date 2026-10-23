@@ -141,7 +141,7 @@ function Group({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-function Row({ icon, label, value, right, chevron, onClick }: { icon: ReactNode; label: ReactNode; value?: string; right?: ReactNode; chevron?: boolean; onClick?: () => void }) {
+function Row({ icon, label, value, right, chevron, onClick }: { icon: ReactNode; label: ReactNode; value?: string | undefined; right?: ReactNode; chevron?: boolean; onClick?: () => void }) {
   const inner = (
     <>
       <span className="shrink-0 text-muted-foreground">{icon}</span>
